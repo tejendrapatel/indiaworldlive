@@ -1,0 +1,188 @@
+
+<html>
+<html lang="en">
+<head>
+	{% load static %}
+<title>indiaworldlive| Home :: indiaworldlive.com</title>
+<link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet" type="text/css" media="all" /><!-- fontawesome -->
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" media="all" /><!-- Bootstrap stylesheet -->
+<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" href="{% static 'css/flexslider.css' %}" type="text/css" media="screen" property="" />
+<!-- stylesheet -->
+	<link href="https://fonts.googleapis.com/css?family=Nunito+Sans:700%7CNunito:300,600" rel="stylesheet">
+		<link type="text/css" rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"/>
+		<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+		<link type="text/css" rel="stylesheet" href="{% static 'css/style.css' %}"/>
+<!-- meta tags -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Blog Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //meta tags -->
+<!--fonts-->
+<link href="//fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" rel="stylesheet">
+<link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+<!--//fonts-->
+<script type="text/javascript" src="{% static 'js/jquery-2.1.4.min.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+<!-- Required-js -->
+
+<!-- start-smoth-scrolling -->
+<script type="text/javascript" src="{% static 'js/move-top.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/easing.js' %}"></script>
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$(".scroll").click(function(event){
+			event.preventDefault();
+			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+		});
+	});
+</script>
+<!-- start-smoth-scrolling -->
+
+<!-- scriptfor smooth drop down-nav -->
+<script>
+$(document).ready(function(){
+    $(".dropdown").hover(
+        function() {
+            $('.dropdown-menu', this).stop( true, true ).slideDown("fast");
+            $(this).toggleClass('open');
+        },
+        function() {
+            $('.dropdown-menu', this).stop( true, true ).slideUp("fast");
+            $(this).toggleClass('open');
+        }
+    );
+});
+</script>
+
+<!-- //script for smooth drop down-nav -->
+<script src="https://apps.elfsight.com/p/platform.js" defer></script>
+<script src="https://apps.elfsight.com/p/platform.js" defer></script>
+<script src="https://apps.elfsight.com/p/platform.js" defer></script>
+</head>
+<body>
+<!-- header -->
+	<header>
+		{% if request.user.is_authenticated %}
+			<form><button type="logout" formaction="{% url 'logout' %}" style="float:right">Logout</button></form>
+		{% else %}
+			<form><button type="login" formaction="{% url 'login' %}" style="float:right">Login</button></form>
+		{% endif %}
+
+			<div class="container">
+				<div class="logo">
+					<h1><a href="">INDIA WORLD LIVE NEWS</a></h1>
+					<p> indiaworldlive news gives you a top breaking news</p>
+                    <div class="logo navbar-left">
+			<h1><a href="index.html"><img src="{% static 'images/aaa.png' %}" alt="" class="img-responsive" /></a></h1>
+		</div>
+                    <div class="logo navbar-right">
+			<h1><a href="index.html"><img src="{% static 'images/ad.jpg' %}" alt="" class="img-responsive" /></a></h1>
+		</div>
+		</div>
+		<!-- navigation -->
+			<nav class="navbar navbar-default">
+			  <div class="container">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+				  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				  </button>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				  <ul class="nav navbar-nav">
+					<li><a class="active" href="{% url 'home'  %}">होम</a></li>
+
+					<li class="dropdown">
+					  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">न्यूज़ <span class="caret"></span></a>
+					  <ul class="dropdown-menu">
+						  {% for i in all_cat %}
+						<li><a href="{% url 'categorypost' i.id %}">{{ i.name }}</a></li>
+							{% endfor %}
+					  </ul>
+					</li>
+					  <li><a  href="{% url 'index'%}">ताज़ा ख़बर</a></li>
+					  <li><a  href="{% url 'astro'%}">ज्योतिष</a></li>
+					  <li><a href="{% url 'video'%}">विडियो</a></li>
+					  <li><a href="{% url 'contact'%}">संपर्क</a></li>
+					  {% if request.user.is_authenticated %}
+					  	<li><a href="{% url 'addblog' %}">Add News</a></li>
+            		  {% endif %}
+					  <li><div id="google_translate_element"></div></li>
+				  </ul>
+				</div><!-- /.navbar-collapse -->
+
+
+			  </div>
+			</nav>
+			</div>
+		</div>
+	</header>
+
+        {% block body %}
+
+        {% endblock %}
+	<!-- top-header and slider -->
+
+<!-- footer -->
+	<div class="footer-agile-info">
+		<div class="container">
+			<div class="col-md-4 w3layouts-footer">
+				<h3>Contact Information</h3>
+					<p><span><i class="fa fa-map-marker" aria-hidden="true"></i></span> E-2 sky tower ayodhya by pass</p>
+					<p><span><i class="fa fa-mobile" aria-hidden="true"></i></span>P: +7869661406 / +7389258396 </p>
+					<p><span><i class="fa fa-globe" aria-hidden="true"></i></span><a href="#">W: www.indiaworldlive.com</a></p>
+			</div>
+			<div class="col-md-4 wthree-footer">
+				<h1><a href=""><img src="{% static 'images/t.png' %}" alt="" class="img-responsive" /></a></h1>
+			</div>
+			<div class="col-md-4 w3-agile">
+				<h3>Email</h3>
+				<p>roertejendrapatel@gmail.com</p>
+				<p>indiaworldlive@gmail.com</p>
+			</div>
+		</div>
+	</div>
+	<!-- footer -->
+	<!-- copyright -->
+	<div class="copyright">
+		<div class="container">
+			<div class="w3agile-list">
+				<ul>
+					<li><a href="{% url 'home' %}">Home</a></li>
+					<li><a href="{% url 'contact' %}">Contact</a></li>
+				</ul>
+			</div>
+			<div class="agileinfo">
+				<p> Design by : Tejendra patel </p>
+			</div>
+		</div>
+	</div>
+<!-- //copyright -->
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+}</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script src="https://webreader.naturalreaders.com/nr-webreader.js" defer></script>
+<script>
+window.addEventListener("DOMContentLoaded", function() {
+if (typeof NRWebReader != 'undefined') {
+window['NRWebReader'] = new NRWebReader({
+widget_id: "yig7xalj5t"  // DO NOT REMOVE. This is your widget ID for your WebReader
+});
+}
+});
+</script>
+</body>
+</html>

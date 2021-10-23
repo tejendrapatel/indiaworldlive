@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+	<div class="elfsight-app-c731f0ac-96b8-4725-b412-5fe73f723ca5"></div>
+	<div class="container">
+		<div class="banner-btm-agile">
+		<!-- //btm-wthree-left -->
+			<div class="col-md-9 btm-wthree-left">
+
+
+				{% for i,j in all_post %}
+				<div class="wthree-top">
+					<div class="w3agile-top">
+						<div class="w3agile_special_deals_grid_left_grid" >
+							<a href="{% url 'blogdetail' i.id %}"><img src="{{i.image.url}}" class="img-responsive" alt=""/></a>
+						</div>
+						<div class="w3agile-middle">
+						<ul>
+							<li><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>{{i.date}}</a></li>
+
+							<li><a href="{% url 'like' i.id %}"><i class="fa fa-thumbs-up" aria-hidden="true"></i>{{ j }} Likes</a></li>
+							<li><a href="#"><i class="fa fa-comment" aria-hidden="true"></i>{{i.comment_set.count}} Comments</a></li>
+							
+						</ul>
+					</div>
+					</div>
+					<div class="elfsight-app-c38099f3-316d-40e0-8610-a0ab28a17679"></div>
+					
+					<div class="w3agile-bottom">
+						<div class="col-md-3 w3agile-left">
+							<h5>{{i.user.username}}</h5>
+						</div>
+						<div class="col-md-9 w3agile-right">
+							<h3><a href="{% url 'blogdetail' i.id %}">{{i.title}}</a></h3>
+							<p>{{i.description}}</p>
+							<a class="agileits w3layouts" href="{% url 'blogdetail' i.id %}">Read More <span class="glyphicon agileits w3layouts glyphicon-arrow-right" aria-hidden="true"></span></a>
+						</div>
+							<div class="clearfix"></div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+
+				<!-- wthree-top-1 -->
+
+
+
+
+			<div class="col-md-3 w3agile_blog_left">
+				<div class="wthreesearch">
+							<form action="#" method="post">
+								<input type="search" name="Search" placeholder="Search here" required="">
+								<button type="submit" class="btn btn-default search" aria-label="Left Align">
+									<i class="fa fa-search" aria-hidden="true"></i>
+								</button>
+							</form>
+						
+				</div>
+				<div class="agileinfo_calender">
+				{% for i in videos %}
+					 <video width="300" controls>
+                      <source src="{{ i.video.url }}" type="video/mp4">
+                      <source src="{{ i.video.url }}" type="video/ogg">
+                    </video>
+				{% endfor %}
+				</div>
+				<div class="w3ls_popular_posts">
+					<h3>Popular Posts</h3>
+					{% for i in topthree %}
+					<div class="agileits_popular_posts_grid">
+						<div class="w3agile_special_deals_grid_left_grid">
+							<a href="{% url 'blogdetail' i.id %}"><img src="{{i.image.url}}" class="img-responsive" alt="" /></a>
+						</div>
+						<h4><a href="{% url 'blogdetail' i.id %}">{{i.title}}</a></h4>
+						<h5><i class="fa fa-calendar" aria-hidden="true"></i>{{i.date}}</h5>
+					</div>
+					{% endfor %}
+
+				</div>
+				
+				<div class="w3l_categories">
+
+					<h3>Categories</h3>
+					{% for i in all_cat %}
+					<ul>
+						<li><a href="{% url 'categorypost' i.id %}"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>{{i.name}}</a></li>
+						</ul>
+					{% endfor %}
+				</div>
+			<div class="w3ls_recent_posts">
+					<h3>Recent Posts</h3>
+				{% for i in recent %}
+					<div class="agileits_recent_posts_grid">
+						<div class="agileits_recent_posts_gridl">
+							<div class="w3agile_special_deals_grid_left_grid">
+									<a href="{% url 'blogdetail' i.id %}"><img src="{{i.image.url}}" class="img-responsive" alt="" /></a>
+								</div>
+						</div>
+						<div class="agileits_recent_posts_gridr">
+							<h4><a href="{% url 'blogdetail' i.id %}">{{i.title}}</a></h4>
+							<h5><i class="fa fa-calendar" aria-hidden="true"></i>{{i.date}}</h5>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+				{% endfor %}
+
+
+					</div>
+				</div>
+			
+			</div>
+			<!-- //btm-wthree-right -->
+			<div class="clearfix"></div>
+		</iv>
+	</div>
+
+
+{% for i in messages %}
+
+<h1 font-color="red">{{i}}</h1>
+{% endfor %}
+<!-- //copyright -->
+<!-- here stars scrolling icon -->
+	<script type="text/javascript">
+		$(document).ready(function() {
+			/*
+				var defaults = {
+				containerID: 'toTop', // fading element id
+				containerHoverID: 'toTopHover', // fading element hover id
+				scrollSpeed: 1200,
+				easingType: 'linear' 
+				};
+			*/
+								
+			$().UItoTop({ easingType: 'easeOutQuart' });
+								
+			});
+	</script>
+<!-- //here ends scrolling icon -->
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="{% static 'js/bootstrap.js' %}"></script>
+{% endblock %}
